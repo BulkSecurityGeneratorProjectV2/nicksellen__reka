@@ -46,7 +46,7 @@ public class Graphviz {
 	public static void writeDotTo(String dot, String output, String format) {
 		checkState(cmd != null, "'dot' program is not available");
 		try {
-			File f = File.createTempFile("dot", "dot");
+			File f = Files.createTempFile("dot", "dot").toFile();
 			Files.write(f.toPath(), dot.getBytes());
 			try {
 				String[] args = new String[]{cmd, "-T", format, "-o", output, f.getAbsolutePath()};
